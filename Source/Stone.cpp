@@ -42,16 +42,24 @@ void Stone::paint (juce::Graphics& g)
         }
     }
     else if (field == empty){
-        g.drawEllipse(rectangle, 3);
-        g.setColour(juce::Colours::white);
-        g.fillEllipse(rectangle);
+        if (isSelected){
+            g.drawEllipse(rectangle, 4);
+            g.setColour(juce::Colours::white);
+            g.fillEllipse(rectangle);
+        }
+        else{
+            g.drawEllipse(rectangle, 1);
+            g.setColour(juce::Colours::white);
+            g.fillEllipse(rectangle);
+        }
+
+
     }
     else if (field == invalid){
         return;
     }
 
 }
-
 void Stone::resized()
 {
     // This method is where you should set the bounds of any child
@@ -68,13 +76,22 @@ void Stone::mouseExit(const juce::MouseEvent &event) {
     isEntered = false;
     repaint();
 }
-
 void Stone::mouseDown(const juce::MouseEvent &event) {
-    if (isSelected){
+    if (isSelected && (field == present || field == empty)){
         isSelected = false;
+        Board::decreaseSelected();
     }
-    else {
+    else if (!isSelected && (field == present || field == empty)){
         isSelected = true;
+        Board::increaseSelected();
+    }
+    else{
+        return;
+    }
+
+    if (Board::twoSelected()){
+        Board::makeMove();
+        Board::resetSelected();
     }
     repaint();
 }

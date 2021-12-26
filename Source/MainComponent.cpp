@@ -10,10 +10,7 @@ MainComponent::MainComponent()
             addAndMakeVisible(*mBoard.stones.at(i).at(j));
         }
     }
-
-    addAndMakeVisible(st);
-
-
+    addAndMakeVisible(menu);
 }
 
 MainComponent::~MainComponent()
@@ -28,10 +25,11 @@ void MainComponent::paint (juce::Graphics& g)
 
 void MainComponent::resized()
 {
-    setupGrid();
+    setupGridBoard();
+    //setupMenu();
 }
 
-void MainComponent::setupGrid() {
+void MainComponent::setupGridBoard() {
     using Track = juce::Grid::TrackInfo;
     using Fr = juce::Grid::Fr;
 
@@ -53,5 +51,9 @@ void MainComponent::setupGrid() {
     }
     grid.items = items;
     grid.performLayout(bounds);
+}
+void MainComponent::setupMenu(){
+
+    menu.setBounds(getLocalBounds());
 
 }

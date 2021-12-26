@@ -55,3 +55,32 @@ void Board::initBoard() {
     }
     stones[3][3]->setField(empty);
 }
+void Board::makeMove() {
+    for (int i = 0; i < size - 2; i++){
+        for (int j = 0; j < size - 2; j++){
+            // Same Row
+            if (stones[i][j]->isSelected && stones[i][j+2]->isSelected){
+                if ((stones[i][j]->getField() == empty && stones[i][j+2]->getField() == present) ||
+                    (stones[i][j]->getField() == present && stones[i][j+2]->getField() == empty)){
+                    stones[i][j+1]->setField(empty);
+                }
+            }
+                // Same Column
+            else if ((stones[i][j]->getField() == empty && stones[i+2][j]->getField() == present) ||
+                     (stones[i][j]->getField() == present && stones[i+2][j]->getField() == empty)){
+                stones[i+1][j]->setField(empty);
+            }
+            else{
+                for (int i = 0; i < size; i++){
+                    for (int j = 0; j < size; j++){
+                        stones[i][j]->isSelected = false;
+                    }
+                }
+            }
+        }
+    }
+}
+bool Board::twoSelected() {return selectedStones == 2;}
+void Board::increaseSelected() {selectedStones++;}
+void Board::decreaseSelected() {selectedStones--;}
+void Board::resetSelected(){selectedStones = 0;}

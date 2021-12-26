@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="g1byuB" name="SolitaireGame">
     <GROUP id="{0E268FFD-8DAE-ABE9-656C-F2870B3A6227}" name="Source">
+      <FILE id="T3lbUI" name="MainMenu.h" compile="0" resource="0" file="Source/MainMenu.h"/>
+      <FILE id="NhmYCX" name="MainMenu.cpp" compile="1" resource="0" file="Source/MainMenu.cpp"/>
       <FILE id="ROlAAv" name="Stone.h" compile="0" resource="0" file="Source/Stone.h"/>
       <FILE id="hrjvry" name="Stone.cpp" compile="1" resource="0" file="Source/Stone.cpp"/>
       <FILE id="wa2UEP" name="Board.h" compile="0" resource="0" file="Source/Board.h"/>

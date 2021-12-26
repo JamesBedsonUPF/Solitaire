@@ -9,7 +9,6 @@
 */
 
 #pragma once
-
 #include "JuceHeader.h"
 #include "Stone.h"
 #define SIZE 7
@@ -17,14 +16,22 @@
 //==============================================================================
 /*
 */
-class Board
-{
+
+class Board {
 public:
     Board();
     ~Board();
     int getSize();
-    std::vector<std::vector<std::unique_ptr<Stone>>> stones;
+    static std::vector<std::vector<std::unique_ptr<Stone>>> stones;
     void initBoard();
+    static void makeMove();
+    static bool twoSelected();
+    static void increaseSelected();
+    static void decreaseSelected();
+    static void resetSelected();
+
 private:
-    int size = SIZE;
+    static const int size = SIZE;
+    static int selectedStones;
 };
+
