@@ -1,15 +1,14 @@
-#pragma once
-
 #include <JuceHeader.h>
 #include "MainMenu.h"
 #include "Board.h"
+#include "SelectionCounter.h"
 
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent  : public juce::Component
+class MainComponent  : public juce::Component, public juce::Timer
 {
 public:
     //==============================================================================
@@ -21,6 +20,8 @@ public:
     void resized() override;
     void setupGridBoard();
     void setupMenu();
+    void timerCallback() override;
+    void gameplay();
 
 private:
     //==============================================================================

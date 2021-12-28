@@ -1,26 +1,12 @@
-/*
-  ==============================================================================
-
-    Stone.cpp
-    Created: 24 Dec 2021 4:30:22pm
-    Author:  James Bedson
-
-  ==============================================================================
-*/
-
-#include <JuceHeader.h>
+#pragma once
 #include "Stone.h"
 
 //==============================================================================
-Stone::Stone()
-{
-    field = present;
-}
+Stone::Stone(){field = present;}
 
-Stone::~Stone()
-{
-}
+Stone::~Stone(){}
 
+//
 void Stone::paint (juce::Graphics& g)
 {
     juce::Rectangle<float> rectangle(10,10,20,20);
@@ -60,14 +46,12 @@ void Stone::paint (juce::Graphics& g)
     }
 
 }
-void Stone::resized()
-{
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-}
+void Stone::resized(){}
 
 void Stone::setField(Field value) {this->field = value;}
 int Stone::getField(){return field;}
+
+//Mouse Action
 void Stone::mouseEnter(const juce::MouseEvent &event) {
     isEntered = true;
     repaint();
@@ -79,19 +63,14 @@ void Stone::mouseExit(const juce::MouseEvent &event) {
 void Stone::mouseDown(const juce::MouseEvent &event) {
     if (isSelected && (field == present || field == empty)){
         isSelected = false;
-        Board::decreaseSelected();
+        SelectionCounter::decreaseSelected();
     }
     else if (!isSelected && (field == present || field == empty)){
         isSelected = true;
-        Board::increaseSelected();
+        SelectionCounter::increaseSelected();
     }
     else{
         return;
-    }
-
-    if (Board::twoSelected()){
-        Board::makeMove();
-        Board::resetSelected();
     }
     repaint();
 }

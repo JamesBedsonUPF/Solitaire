@@ -1,8 +1,7 @@
 #include "MainComponent.h"
 
 //==============================================================================
-MainComponent::MainComponent()
-{
+MainComponent::MainComponent(){
     setSize (600, 400);
 
     for (int i = 0; i < mBoard.getSize(); i++){
@@ -11,10 +10,11 @@ MainComponent::MainComponent()
         }
     }
     addAndMakeVisible(menu);
+    startTimerHz(60);
 }
 
-MainComponent::~MainComponent()
-{
+MainComponent::~MainComponent(){
+    stopTimer();
 }
 
 //==============================================================================
@@ -27,6 +27,11 @@ void MainComponent::resized()
 {
     setupGridBoard();
     //setupMenu();
+}
+
+void MainComponent::timerCallback(){
+
+    gameplay();
 }
 
 void MainComponent::setupGridBoard() {
@@ -56,4 +61,11 @@ void MainComponent::setupMenu(){
 
     menu.setBounds(getLocalBounds());
 
+}
+void MainComponent::gameplay() {
+
+    if (SelectionCounter::twoSelected()){
+        mBoard.makeMove();
+        SelectionCounter::resetSelected();
+    }
 }

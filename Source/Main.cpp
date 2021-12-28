@@ -8,7 +8,6 @@
 
 #include <JuceHeader.h>
 #include "MainComponent.h"
-#include "Board.h"
 
 //==============================================================================
 class SolitaireGameApplication  : public juce::JUCEApplication
